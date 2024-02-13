@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'AzarRegular';
+    src: url("../font/AzarMehr-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'AzarBold';
+    src: url("../font/AzarMehr-Bold.ttf") format("truetype");
+}
+
+.azar{
+    font-family: "AzarRegular";
+}
+
+.azar-bold{
+    font-family: "AzarBold";
+}
