@@ -17,10 +17,10 @@
 <body class="font-[Azar]">
 <header class="bg-cyan-700 p-4 font-[Azar] text-white md:flex items-center justify-between">
     <div class="md:flex items-center gap-x-8">
-        <a href="index.html"><h1 class="font-[AzarBold] text-[1.8rem] my-2">آخرین اخبار</h1></a>
+        <a href="{% url 'news:news' %}"><h1 class="font-[AzarBold] text-[1.8rem] my-2">آخرین اخبار</h1></a>
         <ul class="flex items-center gap-x-6">
             {% for item in category %}
-                <li class="cursor-pointer">{{ item.title }}</li>
+                <a href="{% url 'news:select-category' item.url %}"><li class="cursor-pointer">{{ item.title }}</li></a>
             {% endfor %}
         </ul>
     </div>
@@ -63,7 +63,7 @@
                             >{{ cat.title }}</span
                             >
                            {% endfor %}
-                            </div>
+                    </div>
 
                     <span class="block text-[0.8rem] text-left text-gray-500">{{ item.author }}</span>
                 </div>
@@ -76,7 +76,7 @@
             {% for item in selected %}
             <li class="text-[0.9rem]">
                 <i class="fas fa-circle text-[0.5rem] text-gray-400"></i>
-                <a href="" class="hover:text-red-600 p-1">{{ item.title }}</a>
+                <a href="{% url 'news:select-news' item.id %}" class="hover:text-red-600 p-1">{{ item.title }}</a>
             </li>
             {% endfor %}
         </ul>

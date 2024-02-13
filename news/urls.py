@@ -4,5 +4,6 @@ app_name = 'news'
 
 urlpatterns = [
     path('', views.home, name='news'),
-    path('news/<pk>', views.news, name='select-news')
+    path('news/<pk>', views.news, name='select-news'),
+    path('category/<cat>', views.categories, name='select-category')
 ]

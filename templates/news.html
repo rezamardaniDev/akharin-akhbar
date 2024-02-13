@@ -1,3 +1,4 @@
+{% load jformat %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -16,10 +17,10 @@
 <body class="font-[Azar]">
 <header class="bg-cyan-700 p-4 font-[Azar] text-white md:flex items-center justify-between">
     <div class="md:flex items-center gap-x-8">
-        <a href="index.html"><h1 class="font-[AzarBold] text-[1.8rem] my-2">آخرین اخبار</h1></a>
+        <a href="{% url 'news:news' %}"><h1 class="font-[AzarBold] text-[1.8rem] my-2">آخرین اخبار</h1></a>
         <ul class="flex items-center gap-x-6">
             {% for item in category %}
-                <li class="cursor-pointer">{{ item.title }}</li>
+                <a href="{% url 'news:select-category' item.url %}"><li class="cursor-pointer">{{ item.title }}</li></a>
             {% endfor %}
         </ul>
     </div>
@@ -41,41 +42,24 @@
 <hr/>
 <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 p-2 gap-x-1">
     <div class="main-new col-span-4 border-b md:border-none">
-        <h2 class="text-center text-[2rem] font-[AzarBold] text-gray-500 my-2">رای پرونده قتل داریوش مهرجویی صادر
-            شد</h2>
-        <img src="https://vista.ir/news/i/jsnews/24-02-12/jsfrwe8.jpg" alt="" class="w-[80%] block mx-auto rounded-sm"/>
+        <h2 class="text-center text-[2rem] font-[AzarBold] text-gray-500 my-2">{{ news.title }}</h2>
+        <img src="{{ news.image.url }}" alt="" class="w-[80%] block mx-auto rounded-sm"/>
         <p class="mx-auto block text-justify w-[80%] my-4 bg-gray-300 p-1 rounded-md">
-            رئیس کل دادگستری استان البرز گفت که بر اساس رای صادره در شعبه اول دادگاه کیفری یک استان البرز متهمان به قصاص
-            و حبس‌های بلندمدت
-            محکوم شده‌اند.
+           {{ news.short_description }}
         </p>
         <p class="text-[0.9rem] w-[80%] mx-auto text-justify">
-            به گزارش جهان صنعت نیوز، حسین فاضلی هریکندی با اعلام صدور حکم پرونده قتل مرحوم مهرجویی و همسر وی که مهرماه
-            سال جاری رخ داد، گفت:
-            در ساعات پایانی ۲۲ مهرماه، خبر وقوع قتل مرحوم داریوش مهرجویی و مرحومه رقیه (وحیده) محمدی‌فر در حوزه قضایی
-            شهرستان فردیس افکار
-            عمومی و جامعه هنری و سینمایی کشورمان را در بهت فرو برد و مردم و دوستداران هنر را متاثر کرد.
-            <br/><br/>
-            رئیس کل دادگستری البرز گفت: دقایقی پس از گزارش وقوع این قتل، بلافاصله دادستان فردیس، بازپرس ویژه قتل، عوامل
-            پلیس آگاهی شهرستان
-            فردیس و استان البرز به همراه تیم بررسی صحنه قتل در محل حاضر و موضوع را بررسی کردند. او افزود: در نتیجه
-            پیگیری‌ها و رهنمودهای رئیس
-            قوه قضائیه و دستوراتی که بلافاصله در خصوص تسریع در شناسایی و دستگیری متهمان و رسیدگی به پرونده صادر کرد. با
-            تلاش‌شبانه روزی انجام
-            شده و در کمتر از پنج روز از وقوع قتل، متهمان شناسایی و دستگیر شدند.
+           {{ news.description | linebreaksbr }}
         </p>
         <div class="w-[80%] mx-auto my-2 text-gray-500">
-            <span class="text-[0.9rem] text-left block">دوشنبه 13:40</span>
+            <span class="text-[0.9rem] my-6 text-left block">{{ news.created_date | jformat:"%Y/%m/%d - %H:%M" }}</span>
         </div>
         <div class="mx-auto w-[80%] my-4">
-                    <span
-                            class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                    >حوادث</span
-                    >
-            <span
-                    class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-            >داخلی</span
-            >
+                   {% for cat in news.category.all %}
+                            <span
+                                    class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
+                            >{{ cat.title }}</span
+                            >
+                           {% endfor %}
         </div>
     </div>
     <div class="end-news col-span-2 md:border-r p-2">
@@ -84,7 +68,7 @@
             {% for item in selected %}
                 <li class="text-[0.9rem]">
                     <i class="fas fa-circle text-[0.5rem] text-gray-400"></i>
-                    <a href="" class="hover:text-red-600 p-1">{{ item.title }}</a>
+                    <a href="{% url 'news:select-news' item.id %}" class="hover:text-red-600 p-1">{{ item.title }}</a>
                 </li>
             {% endfor %}
         </ul>
