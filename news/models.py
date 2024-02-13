@@ -28,6 +28,7 @@ class News(models.Model):
     category = models.ManyToManyField(Category, verbose_name="دسته بندی")
     status = models.BooleanField(default=False, verbose_name="فعال/غیرفعال")
     selected = models.BooleanField(default=False, verbose_name="خبر برگزیده")
+    image = models.ImageField(upload_to='images')
 
     def __str__(self):
         return self.title

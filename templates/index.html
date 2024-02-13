@@ -1,143 +1,92 @@
+{% load jformat %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>آخرین اخبار</title>
-        <link rel="stylesheet" href="/static/style/font.css" />
-        <link rel="stylesheet" href="/static/style/tailwind.css" />
-        <link
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>آخرین اخبار</title>
+    <link rel="stylesheet" href="/static/style/font.css"/>
+    <link rel="stylesheet" href="/static/style/tailwind.css"/>
+    <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous"
-            referrerpolicy="no-referrer" />
-    </head>
-    <body class="font-[Azar]">
-        <header class="bg-cyan-700 p-4 font-[Azar] text-white md:flex items-center justify-between">
-            <div class="md:flex items-center gap-x-8">
-                <a href="index.html"><h1 class="font-[AzarBold] text-[1.8rem] my-2">آخرین اخبار</h1></a>
-                <ul class="flex items-center gap-x-6">
-                    <li class="cursor-pointer">جدیدترین</li>
-                    <li class="cursor-pointer">سیاسی</li>
-                    <li class="cursor-pointer">ورزشی</li>
-                    <li class="cursor-pointer">اقتصادی</li>
-                    <li class="cursor-pointer">حوادث</li>
-                </ul>
-            </div>
-            <div>
-                <h2 class="font-[AzarBold] text-[1.2rem] hidden md:block">Akharin Akhbar</h2>
-            </div>
-        </header>
-        <section>
-            <span class="block font-[Azar] text-gray-500 text-[0.9rem] m-2">دوشنبه, ۲۳ بهمن, ۱۴۰۲ / 12 February, 2024</span>
-            <div class="p-4">
-                <span
+            referrerpolicy="no-referrer"/>
+</head>
+<body class="font-[Azar]">
+<header class="bg-cyan-700 p-4 font-[Azar] text-white md:flex items-center justify-between">
+    <div class="md:flex items-center gap-x-8">
+        <a href="index.html"><h1 class="font-[AzarBold] text-[1.8rem] my-2">آخرین اخبار</h1></a>
+        <ul class="flex items-center gap-x-6">
+            {% for item in category %}
+                <li class="cursor-pointer">{{ item.title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2 class="font-[AzarBold] text-[1.2rem] hidden md:block">Akharin Akhbar</h2>
+    </div>
+</header>
+<section>
+    <span class="block font-[Azar] text-gray-500 text-[0.9rem] m-2">دوشنبه, ۲۳ بهمن, ۱۴۰۲ / 12 February, 2024</span>
+    <div class="p-4">
+        {% for item in tags %}
+            <span
                     class="font-[Azar] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 text-[0.9rem] p-1 text-center"
-                    >انتخابات مجلس</span
-                >
-                <span
-                    class="font-[Azar] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 text-[0.9rem] p-1 text-center"
-                    >خرید خودرو</span
-                >
-            </div>
-        </section>
-        <hr />
-        <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 p-2 gap-x-1">
-            <div class="main-new col-span-4">
-                <div class="box md:flex p-2 items-center gap-x-4 border-b">
-                    <img src="https://vista.ir/news/i/jsnews/24-02-12/jsfrwe8.jpg" alt="" class="md:w-[30%] block mx-auto rounded-md" />
-                    <div>
-                        <span class="block text-[0.9rem] text-gray-500 mt-2">12:44 دوشنبه</span>
-                        <h3 class="text-[1.2rem] text-cyan-700">
-                            <a href="">رای پرونده قاتل مهرجویی صادر شد</a>
-                        </h3>
-                        <p class="text-[1rem] text-gray-500 my-2 text-justify">
-                            رئیس کل دادگستری استان البرز گفت که بر اساس رای صادره در شعبه اول دادگاه کیفری یک استان البرز، متهمان به قصاص و حبس‌های
-                            بلندمدت محکوم شده‌اند.
-                        </p>
-                        <div>
-                            <span
-                                class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                                >حوادث</span
-                            >
-                            <span
-                                class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                                >داخلی</span
-                            >
-                        </div>
-                        <span class="block text-[0.8rem] text-left text-gray-500">آخرین اخبار</span>
-                    </div>
-                </div>
+            >{{ item.title }}</span
+            >
+        {% endfor %}
 
-                <div class="box md:flex p-2 items-center gap-x-4 border-b">
-                    <img src="https://vista.ir/news/i/jsnews/24-02-12/jsfrwe8.jpg" alt="" class="md:w-[30%] block mx-auto rounded-md" />
-                    <div>
-                        <span class="block text-[0.9rem] text-gray-500 mt-2">12:44 دوشنبه</span>
-                        <h3 class="text-[1.2rem] text-cyan-700">
-                            <a href="">رای پرونده قاتل مهرجویی صادر شد</a>
-                        </h3>
-                        <p class="text-[1rem] text-gray-500 my-2 text-justify">
-                            رئیس کل دادگستری استان البرز گفت که بر اساس رای صادره در شعبه اول دادگاه کیفری یک استان البرز، متهمان به قصاص و حبس‌های
-                            بلندمدت محکوم شده‌اند.
-                        </p>
-                        <div>
-                            <span
-                                class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                                >حوادث</span
-                            >
-                            <span
-                                class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                                >داخلی</span
-                            >
-                        </div>
-                        <span class="block text-[0.8rem] text-left text-gray-500">آخرین اخبار</span>
-                    </div>
-                </div>
+    </div>
+</section>
+<hr/>
+<section class="container mx-auto grid grid-cols-1 md:grid-cols-6 p-2 gap-x-1">
+    <div class="main-new col-span-4">
 
-                <div class="box md:flex p-2 items-center gap-x-4 border-b">
-                    <img src="https://vista.ir/news/i/jsnews/24-02-12/jsfrwe8.jpg" alt="" class="md:w-[30%] block mx-auto rounded-md" />
+        {% for item in news %}
+            <div class="box md:flex p-2 items-center gap-x-4 border-b">
+                <img src="{{ item.image.url }}" alt=""
+                     class="md:w-[30%] block mx-auto rounded-md"/>
+                <div>
+                    <span class="block text-[0.9rem] text-gray-500 mt-2">{{ item.created_date | jformat:"%Y/%m/%d - %H:%M" }}</span>
+                    <h3 class="text-[1.2rem] text-cyan-700">
+                        <a href="{% url 'news:select-news' item.id %}">{{ item.title }}</a>
+                    </h3>
+                    <p class="text-[1rem] text-gray-500 my-2 text-justify">
+                        {{ item.short_description }}
+                    </p>
                     <div>
-                        <span class="block text-[0.9rem] text-gray-500 mt-2">12:44 دوشنبه</span>
-                        <h3 class="text-[1.2rem] text-cyan-700">
-                            <a href="">رای پرونده قاتل مهرجویی صادر شد</a>
-                        </h3>
-                        <p class="text-[1rem] text-gray-500 my-2 text-justify">
-                            رئیس کل دادگستری استان البرز گفت که بر اساس رای صادره در شعبه اول دادگاه کیفری یک استان البرز، متهمان به قصاص و حبس‌های
-                            بلندمدت محکوم شده‌اند.
-                        </p>
-                        <div>
+                        {% for cat in item.category.all %}
                             <span
-                                class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                                >حوادث</span
+                                    class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
+                            >{{ cat.title }}</span
                             >
-                            <span
-                                class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                                >داخلی</span
-                            >
-                        </div>
-                        <span class="block text-[0.8rem] text-left text-gray-500">آخرین اخبار</span>
-                    </div>
+                           {% endfor %}
+                            </div>
+
+                    <span class="block text-[0.8rem] text-left text-gray-500">{{ item.author }}</span>
                 </div>
             </div>
-            <div class="end-news col-span-2 md:border-r p-2">
-                <h4 class="text-gray-600 text-[1rem]">اخبار برگزیده</h4>
-                <ul class="my-2">
-                    <li class="text-[0.9rem]">
-                        <i class="fas fa-circle text-[0.5rem] text-gray-400"></i>
-                        <a href="" class="hover:text-red-600 p-1">حمله به سفارت ایران در فرانسه</a>
-                    </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div>
-        </section>
-        <footer class="bg-cyan-700 p-6">
-            <h2 class="text-[1.3rem] font-[AzarBold] text-white">ارتباط با ما</h2>
-            <span class="text-[0.9rem] text-white">تهران، خیابان شریعتی، ساختمان لاله، پلاک 1</span>
-            <span class="text-[0.9rem] text-white block">شماره تماس: 6420-021</span>
-            <span class="mx-auto text-white text-[0.9rem] block text-center mt-6">تمامی حقوق برای آخرین اخبار محفوظ میباشد</span>
-        </footer>
-    </body>
+        {% endfor %}
+    </div>
+    <div class="end-news col-span-2 md:border-r p-2">
+        <h4 class="text-gray-600 text-[1rem]">اخبار برگزیده</h4>
+        <ul class="my-2">
+            {% for item in selected %}
+            <li class="text-[0.9rem]">
+                <i class="fas fa-circle text-[0.5rem] text-gray-400"></i>
+                <a href="" class="hover:text-red-600 p-1">{{ item.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+<footer class="bg-cyan-700 p-6">
+    <h2 class="text-[1.3rem] font-[AzarBold] text-white">ارتباط با ما</h2>
+    <span class="text-[0.9rem] text-white">تهران، خیابان شریعتی، ساختمان لاله، پلاک 1</span>
+    <span class="text-[0.9rem] text-white block">شماره تماس: 6420-021</span>
+    <span class="mx-auto text-white text-[0.9rem] block text-center mt-6">تمامی حقوق برای آخرین اخبار محفوظ میباشد</span>
+</footer>
+</body>
 </html>
