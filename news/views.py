@@ -37,3 +37,15 @@ def categories(request, cat):
         'news': news,
         'selected': selected
     })
+
+def teggit(request, tag):
+    tags = Tag.objects.all()
+    category = Category.objects.all()
+    news = News.objects.filter(status=True, tag__url=tag).all()
+    selected = News.objects.filter(selected=True).all()
+    return render(request, 'index.html', context={
+        'tags': tags,
+        'category': category,
+        'news': news,
+        'selected': selected
+    })

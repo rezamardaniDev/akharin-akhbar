@@ -20,7 +20,9 @@
         <a href="{% url 'news:news' %}"><h1 class="font-[AzarBold] text-[1.8rem] my-2">آخرین اخبار</h1></a>
         <ul class="flex items-center gap-x-6">
             {% for item in category %}
-                <a href="{% url 'news:select-category' item.url %}"><li class="cursor-pointer">{{ item.title }}</li></a>
+                <a href="{% url 'news:select-category' item.url %}">
+                    <li class="cursor-pointer">{{ item.title }}</li>
+                </a>
             {% endfor %}
         </ul>
     </div>
@@ -32,10 +34,12 @@
     <span class="block font-[Azar] text-gray-500 text-[0.9rem] m-2">دوشنبه, ۲۳ بهمن, ۱۴۰۲ / 12 February, 2024</span>
     <div class="p-4">
         {% for item in tags %}
-            <span
-                    class="font-[Azar] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 text-[0.9rem] p-1 text-center"
-            >{{ item.title }}</span
-            >
+            <a href="{% url 'news:select-tag' item.url %}">
+                <span
+                        class="font-[Azar] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 text-[0.9rem] p-1 text-center"
+                >{{ item.title }}</span
+                >
+            </a>
         {% endfor %}
     </div>
 </section>
@@ -45,21 +49,21 @@
         <h2 class="text-center text-[2rem] font-[AzarBold] text-gray-500 my-2">{{ news.title }}</h2>
         <img src="{{ news.image.url }}" alt="" class="w-[80%] block mx-auto rounded-sm"/>
         <p class="mx-auto block text-justify w-[80%] my-4 bg-gray-300 p-1 rounded-md">
-           {{ news.short_description }}
+            {{ news.short_description }}
         </p>
         <p class="text-[0.9rem] w-[80%] mx-auto text-justify">
-           {{ news.description | linebreaksbr }}
+            {{ news.description | linebreaksbr }}
         </p>
         <div class="w-[80%] mx-auto my-2 text-gray-500">
             <span class="text-[0.9rem] my-6 text-left block">{{ news.created_date | jformat:"%Y/%m/%d - %H:%M" }}</span>
         </div>
         <div class="mx-auto w-[80%] my-4">
-                   {% for cat in news.category.all %}
-                            <span
-                                    class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
-                            >{{ cat.title }}</span
-                            >
-                           {% endfor %}
+            {% for cat in news.category.all %}
+                <span
+                        class="font-[Azar] text-[0.8rem] rounded-lg cursor-pointer hover:bg-gray-200 border border-transparent hover:border-gray-200 transition-all duration-300 bg-gray-100 p-1 text-center"
+                >{{ cat.title }}</span
+                >
+            {% endfor %}
         </div>
     </div>
     <div class="end-news col-span-2 md:border-r p-2">
